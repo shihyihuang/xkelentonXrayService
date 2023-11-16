@@ -1,0 +1,60 @@
+﻿@model xkelenton.Models.Practitioner
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Practitioner</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            First Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            Last Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AhpraNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AhpraNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MobileNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MobileNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+
+    </dl>
+</div>
+
+<div class="form-group">
+    <a href="@Url.Action("Edit", new { id = Model.Id })" class="btn btn-primary" style="margin-top: 10px;">Edit</a>
+    <a href="@Url.Action("Index")" class="btn btn-outline-dark" style="margin-top: 10px; margin-left: 10px;">Back to List</a>
+</div>

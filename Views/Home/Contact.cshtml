@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Xkelenton Clinic </h2> 
+<h6> Open 7 days a week, 365 days a year, from 9 AM to 6 PM </h6> 
+<p><strong>Tel:</strong> (03) 1234 5678</p>
+<p><strong>Email:</strong> xkelenton@gmail.com</p>
+<p><strong>Address: </strong> 328 swanston st, melbourne VIC 3000, australia </p>
+<div id="map" style=" height: 600px;"></div>
+
+@section Scripts {
+
+    <script>
+
+        // Mapbox map
+        //https://docs.mapbox.com/mapbox-gl-js/example/mapbox-gl-directions/
+        mapboxgl.accessToken = 'api';
+        const map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v12',
+            center: [144.9655, -37.8097],
+            zoom: 15
+        });
+        // navigation between places and trip info
+        map.addControl(
+            new MapboxDirections({
+                accessToken: mapboxgl.accessToken
+            }),
+            'top-left'
+        );
+
+        // Mark the clinic on the map
+        //https://docs.mapbox.com/mapbox-gl-js/example/add-a-marker/
+        const marker1 = new mapboxgl.Marker()
+            .setLngLat([144.9655, -37.8097])
+            .addTo(map);
+
+    </script>
+}
+

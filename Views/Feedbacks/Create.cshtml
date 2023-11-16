@@ -1,0 +1,63 @@
+﻿
+@model xkelenton.Models.Feedback
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2> Leave a comment & Rate our service! </h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h6>
+        We appreciate you taking the time to share your experience at Xkelenton with us.
+        Your valued feedback will help us to continually improve our services.
+    </h6>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+@*    https://getbootstrap.com/docs/5.0/forms/range/*@
+    <div class="form-group">
+        <label for="customRange3" class="control-label col-md-2">Rating Score</label>
+        <div class="col-md-10">
+            <label for="customRange3">1</label>
+            <input type="range" class="form-range" min="1" max="5" step="1" id="customRange3" name="RatingScore" />
+            <label for="customRange3">5</label>
+            @Html.ValidationMessageFor(model => model.RatingScore, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Comment, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Comment, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.HiddenFor(model => model.PatientId, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PatientId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-10 col-md-offset-2">
+            <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Create</button>
+            <a href="@Url.Action("Index")" class="btn btn-outline-dark" style="margin-top: 10px; margin-left: 10px;">Back to List</a>
+        </div>
+    </div>
+
+</div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

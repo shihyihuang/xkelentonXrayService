@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@*text reference https://i-med.com.au/*@
+<main>
+    <section class="row" aria-labelledby="aspnetTitle">
+        <h1 id="title">Xkelenton</h1>
+        <img src="~/xrayBanner.jpg" class="img-fluid" alt="...">
+        <p class="lead">
+            Book your radiology appointment online - it’s quick, easy and saves waiting on the phone.
+            Browse for a date, time, and practitioner to suit you  - confirmed in 3 easy steps. Remember to have your referral handy.
+        </p>
+    </section>
+
+    <div class="row">
+        <section class="col-md-4" aria-labelledby="bookingTitle">
+            <h2 id="bookingTitle">1 Make an appointment</h2>
+            <p>
+                Self-manage your X-Ray examination appointment with Xkelenton's online booking system.
+                Simply select your preferred practitioner, date, and time.
+                It’s convenient and saves time waiting on the phone.
+            </p>
+            <p> <a href="@Url.Action("Create", "Appointments")" class="btn btn-outline-dark btn-lg"> Make an appointment &raquo; </a></p>
+        </section>
+
+        <section class="col-md-4" aria-labelledby="viewImageTitle">
+            <h2 id="viewImageTitle">2 View your images</h2>
+            <p> View your images within 48 hours after your scan by checking your email. </p>
+        </section>
+
+        <section class="col-md-4" aria-labelledby="reportTitle">
+            <h2 id="reportTitle">3 Speak with your doctor </h2>
+            <p>
+                Once our radiologist has finalised your results, Xkelenton will send a report directly to your email.
+                It is important to speak with your health practitioner about your result,
+                to understand what they mean and complete follow up treatment if needed.
+            </p>
+        </section>
+    </div>
+</main>

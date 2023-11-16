@@ -1,0 +1,52 @@
+﻿﻿@model xkelenton.Models.FeedbackViewModels
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h1 class="display-6"> Overall Rating Average</h1>
+<div class="d-flex justify-content-center align-items-center" style="height: 100px; width: 100px; border-radius: 50%; background-color: #adb5bd;">
+    <p class="display-5">@Model.AverageRatingScore</p>
+</div>
+
+<br />
+
+<div class="d-flex justify-content-between align-items-center">
+    <h2>Reviews you have made</h2>
+    <a href="@Url.Action("Create")" class="btn btn-secondary btn-lg"> Provide Feedback</a>
+</div>
+
+<br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Feedbacks.First().RatingScore)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Feedbacks.First().Comment)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Feedbacks)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RatingScore)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comment)
+            </td>
+            <td>
+                <div class="btn-group">
+                    <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-outline-dark">Edit</a>
+                    <a href="@Url.Action("Details", new { id = item.Id })" class="btn btn-outline-dark">Details</a>
+                    <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-outline-dark">Delete</a>
+                </div>
+            </td>
+        </tr>
+    }
+
+</table>

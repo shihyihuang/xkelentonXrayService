@@ -1,0 +1,78 @@
+﻿@model xkelenton.Models.Appointment
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Make an appointment</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h6>Appointments can be scheduled within our operating hours, from 9 AM to 6 PM!
+    The examination duration is one hour, and only one appointment is accepted per hour!</h6>
+
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.AppointmentTime, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.AppointmentTime, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.AppointmentTime, "", new { @class = "text-danger" })
+
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.Label("Practitioner", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @*                https://stackoverflow.com/questions/16594958/how-to-use-a-viewbag-to-create-a-dropdownlist*@
+            @Html.DropDownList("PractitionerId", (SelectList)ViewBag.PractitionerId, "Select Practitioner", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.PractitionerId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.HiddenFor(model => model.PatientId, new { htmlAttributes = new { @class = "form-control col-md-2" } })
+            @Html.ValidationMessageFor(model => model.PatientId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-10 col-md-offset-2">
+            <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Book</button>
+            <a href="@Url.Action("Index")" class="btn btn-outline-dark" style="margin-top: 10px; margin-left: 10px;">Back to List</a>
+        </div>
+    </div>
+
+</div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //reference: https://stackoverflow.com/questions/31489086/jquery-datetimepicker-disable-today
+            var tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+
+            $('[name="AppointmentTime"]').datetimepicker({
+                step: 60, // limit to select only hourly time 
+                minDate: tomorrow, // limit to select a date before today
+                minTime: '09:00', // only timeslots after the opening time can be selected
+                maxTime: '18:00' // only timeslots before the closing time can be selected
+            });
+        });
+    </script>
+
+}
+

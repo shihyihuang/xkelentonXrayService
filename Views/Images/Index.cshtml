@@ -1,0 +1,79 @@
+﻿@model IEnumerable<xkelenton.Models.Image>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="d-flex justify-content-between align-items-center">
+    <h2>X-RAY Image</h2>
+    <a href="@Url.Action("Create")" class="btn btn-secondary btn-lg">Upload Image</a>
+</div>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ScanDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Patient.FirstName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+
+                <td>
+                    <img class="img-thumbnail" src="@Url.Content("~/UploadImages/" + item.ImageUrl)" />
+                </td>
+                <td>
+                    @item.ScanDate.ToString("dd/MM/yyyy")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Patient.FirstName)
+                    @Html.DisplayFor(modelItem => item.Patient.LastName)
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-outline-dark">Edit</a>
+                        <a href="@Url.Action("Details", new { id = item.Id })" class="btn btn-outline-dark">Details</a>
+                        <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-outline-dark">Delete</a>
+                    </div>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+@*https://datatables.net/examples/styling/bootstrap5.html*@
+
+@section Scripts {
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+    <script>
+        $(document).ready(function () {
+            $('table').DataTable({
+
+            });
+        });
+    </script>
+}

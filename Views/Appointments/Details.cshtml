@@ -1,0 +1,48 @@
+﻿@model xkelenton.Models.Appointment
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Appointment Details</h2>
+
+<div>
+    @*    <h4>Appointment</h4>*@
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AppointmentTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AppointmentTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Practitioner.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Practitioner.FirstName)
+            @Html.DisplayFor(model => model.Practitioner.LastName)
+        </dd>
+
+
+        <dt>
+            Patient Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient.FirstName)
+            @Html.DisplayFor(model => model.Patient.LastName)
+        </dd>
+
+    </dl>
+</div>
+
+<div class="form-group">
+    <a href="@Url.Action("Edit", new { id = Model.Id })" class="btn btn-primary" style="margin-top: 10px;">Edit</a>
+    <a href="@Url.Action("Index")" class="btn btn-outline-dark" style="margin-top: 10px; margin-left: 10px;">Back to List</a>
+</div>
+

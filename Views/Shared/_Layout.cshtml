@@ -1,0 +1,92 @@
+﻿@using Ganss.Xss;
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title - Xkeleton X-RAY Imaging Service</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Scripts/datepicker/jquery.datetimepicker.css" rel="stylesheet" />
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.1/mapbox-gl-directions.css" type="text/css">
+
+</head>
+<body>
+    <nav class="navbar navbar-light navbar-expand-sm navbar-toggleable-sm" style="background-color: #e3f2fd;">
+        <div class="container">
+            @Html.ActionLink("Xkelenton", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    @*                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>*@
+                    @*                    <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>*@
+                    <li>@Html.ActionLink("About", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("practitioner"))
+                    {
+                        <li>@Html.ActionLink("Send Diagnosis", "SendEmail", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("patient"))
+                    {
+
+                        <li>@Html.ActionLink("Appointments", "Index", "Appointments", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("patient"))
+                    {
+
+                        <li>@Html.ActionLink("Review", "Index", "Feedbacks", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
+
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("patient"))
+                    {
+
+                        <li>@Html.ActionLink("Profile", "Index", "Patients", new { area = "" }, new { @class = "nav-link" })</li>
+
+                    }
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("practitioner"))
+                    {
+
+                        <li>@Html.ActionLink("X-RAY Info", "Index", "PatientTable", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("practitioner"))
+                    {
+
+                        <li>@Html.ActionLink("X-RAY Image", "Index", "Images", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
+
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("practitioner"))
+                    {
+
+                        <li>@Html.ActionLink("Practitioner Profile", "Index", "Practitioners", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
+
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>
+                &copy; @DateTime.Now.Year - Xkeleton X-RAY Imaging Service
+            </p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.datetimepicker.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.1/mapbox-gl-directions.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+    <script src="~/Scripts/tinymce/tinymce.min.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
