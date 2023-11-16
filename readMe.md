@@ -16,8 +16,10 @@
 ### **Web application title and description** <a name="title"></a>
 
 - Title
+  
   Xkeleton X-RAY Imaging Service
 - Description
+  
   Xkeleton X-RAY Imaging Service is a web application with the name 'Xkeleton,' a homophone of 'Skeleton.' It combines the 'X' from 'X-RAY' with 'Skeleton.' Additionally, the capital 'X' is shared with the subtitle 'X-RAY Imaging Service,' as seen in the logo below. This provides users with a clear understanding that we offer a specialized X-ray imaging service.
 
 ### **Use case diagram & User stories** <a name="use-case"></a>
